@@ -76,7 +76,7 @@ $(document).ready(function() {
             onSelect: function(date) {
                 for ( i = 0; i < AvailableDates.events.length; i++){
                     if(AvailableDates.events[i].date == date){
-                        window.location = AvailableDates.events[i].link;
+                        window.location = AvailableDates.events[i].link
                         break;
                     } else {
                         window.location = "/calendar";

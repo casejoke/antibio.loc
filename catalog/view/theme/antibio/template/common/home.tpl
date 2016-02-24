@@ -127,4 +127,66 @@
           </div>
       </div>
   </section>
+ <!-- CLIENTS -->
+    <section class="slice bg-white">
+        <div class="wp-section">
+            <div class="container">
+                <div class="section-title-wr">
+                    <h3 class="section-title left"><span>Партнеры</span></h3>
+                </div>
+                <div class="row">
+                  <div class="col-md-2 col-sm-4 col-xs-6">
+                        <div class="client">
+                            <a href="http://nphcd.ru/">
+                               <img src="image/catalog/partners/logo_np.png" alt="">
+                            </a>
+                        </div>
+                    </div>
+                      <div class="col-md-2 col-sm-4 col-xs-6">
+                        <div class="client">
+                            <a href="http://www.antimicrob.net/">
+                               <img src="image/catalog/partners/al_logo.png" alt="">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-md-2 col-sm-4 col-xs-6">
+                        <div class="client">
+                            <a href="http://www.ksma.ru/">
+                                <img src="image/catalog/partners/logo-krasnodar.png" alt="">
+                            </a>
+                        </div>
+                    </div>
+                     <div class="col-md-2 col-sm-4 col-xs-6">
+                        <div class="client">
+                            <a href="http://www.ngmu.ru/">
+                               <img src="image/catalog/partners/logo-novosib.png" alt="">
+                            </a>
+                        </div>
+                    </div>
+                     <div class="col-md-2 col-sm-4 col-xs-6">
+                        <div class="client">
+                            <a href="http://omsk-osma.ru/">
+                                <img src="image/catalog/partners/logo-omsk.png" alt="">
+                            </a>
+                        </div>
+                    </div>
+                    
+                     <div class="col-md-2 col-sm-4 col-xs-6">
+                        <div class="client">
+                            <a href="http://www.chelsma.ru/">
+                               <img src="image/catalog/partners/logo-ural.png" alt="">
+                            </a>
+                        </div>
+                    </div>
+                    
+                   
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- FOOTER -->
+
+
+
+
 <?php echo $footer; ?>

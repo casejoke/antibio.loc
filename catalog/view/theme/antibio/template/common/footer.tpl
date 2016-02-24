@@ -6,7 +6,7 @@
                     <div class="col">
                        <h4>Контактная информация</h4>
                        <ul>
-                            <li>129825, Москва, ул.Годовикова, д.9, стр.3, офис 5.13</li>
+                            <li>129825, Москва, ул.Годовикова, д.9, стр.3, офис 5.13.12</li>
                             <li>Телефон: +7 (495) 543-98-58 </li>
                             <li>E-mail: <a href="mailto:contact@antibiotik.pro" >contact@antibiotik.pro</a></li>
                         </ul>
@@ -31,19 +31,19 @@
                 <div class="col-md-3">
                     <div class="col col-social-icons">
                         <h4>Мы в сети</h4>
-                        <a href="#"><i class="fa fa-facebook"></i></a>
-                        <a href="#"><i class="fa fa-google-plus"></i></a>
-                        <a href="#"><i class="fa fa-linkedin"></i></a>
-                        <a href="#"><i class="fa fa-twitter"></i></a>
+                        <a href="http://www.facebook.com/nphcd"><i class="fa fa-facebook"></i></a>
+                        <a href="http://www.instagram.com/nphcd"><i class="fa fa-instagram"></i></a>
+                     
                     </div>
                 </div>
 
                  <div class="col-md-3">
                     <div class="col">
-                        <h4>О проекте</h4>
+                        <a href="/about_us"><h4>О проекте</h4></a>
+                        
                         <p class="no-margin">
-                        Oбразовательной программы "Рациональное применение антимикробных средств".
-                        <br><br>
+                        Oбразовательная программа "Рациональное применение антимикробных средств в амбулаторной практике".
+                        <br>Разработана Альянсом клинических химиотерапевтов и микробиологов совместно с НП “Развитие партнерства в здравоохранении”<br>
                         <a href="/create-account" class="btn btn-block btn-base btn-icon fa-check"><span>Зарегистрироватся</span></a>
                         </p>
                     </div>

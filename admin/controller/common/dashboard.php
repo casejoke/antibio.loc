@@ -1,7 +1,7 @@
 <?php
 class ControllerCommonDashboard extends Controller {
 	public function index() {
-		
+		$this->response->redirect($this->url->link('sale/customer', 'token=' . $this->session->data['token'], 'SSL'));
 		$this->load->language('common/dashboard');
 
 		$this->document->setTitle($this->language->get('heading_title'));
