@@ -10,8 +10,8 @@ $_['text_your_details']    = 'Основные данные';
 $_['text_your_address']    = 'Ваш адрес';
 $_['text_newsletter']      = 'Рассылка новостей';
 $_['text_your_password']   = 'Ваш пароль';
-$_['text_agree']           = 'Я прочитал <a href="%s" class="agree"><b>%s</b></a> и согласен с условиями';
-
+$_['text_agree']           = 'Я прочитал <a href="%s" data-toggle="modal" data-target="#myModal" class="agree"><b>%s</b></a> и согласен с условиями';
+$_['text_agree_new']           = 'Я прочитал <a href="#" data-toggle="modal" data-target="#myModal" class="agree"><b>%s</b></a> и согласен с условиями';
 // Entry
 $_['entry_customer_group'] = 'Направление бизнеса';
 $_['entry_firstname']      = 'Имя';
@@ -48,3 +48,4 @@ $_['error_custom_field']   = '%s обязательно к заполнению!
 $_['error_password']       = 'В пароле должно быть от 4 до 20 символов!';
 $_['error_confirm']        = 'Пароли и пароль подтверждения не совпадают!';
 $_['error_agree']          = 'Вы должны прочитать и согласится с %s!';
+$_['error_captcha']  	   = 'Проверь капчу!';

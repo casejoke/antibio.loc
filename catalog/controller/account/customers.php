@@ -20,7 +20,7 @@ class ControllerAccountCustomers extends Controller {
 
 		$this->load->model('account/customer');
 		$this->load->model('tool/image');
-
+		$this->load->model('tool/upload');
 		//подгрузим список пользователей (не экпертов и  исключая текущего пользователя)
 		if (isset($this->request->get['filter_name'])) {
 			$filter_name = $this->request->get['filter_name'];
@@ -101,15 +101,22 @@ class ControllerAccountCustomers extends Controller {
 
 			//добавить неболшое шифрование!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 		foreach ($results as $result) {
-			if(preg_match('/http/', $result['image'])){
-				$image = $result['image'];
-			}else{
-				if (is_file(DIR_IMAGE . $result['image'])) {
-					$image = $this->model_tool_image->resize($result['image'], 400, 400, 'h');
+			if (!empty($result['image'])){
+				if(preg_match('/http/', $result['image'])){
+					$image = $result['image'];
 				}else{
-					$image = $this->model_tool_image->resize('no-image.png', 400, 400, 'h');
+					$upload_info = $this->model_tool_upload->getUploadByCode($result['image']);
+					$filename = $upload_info['filename'];
+					if (is_file(DIR_UPLOAD . $filename)) {
+						$image = $this->model_tool_upload->resize($filename , 360, 490, 'h');
+					}else{
+						$image = $this->model_tool_image->resize('account.jpg', 360, 490, 'h');
+					}
 				}
+			}else{
+				$image = $this->model_tool_image->resize('account.jpg', 360, 490, 'h');
 			}
+
 			$customer_id_hash = $result['customer_id'];
 			$actions = array();
 			$actions = array(
@@ -118,10 +125,18 @@ class ControllerAccountCustomers extends Controller {
 				'info'		=> $this->url->link('account/info', 'ch=' . $customer_id_hash, 'SSL'),
 			);
 			
+			$custom_field = unserialize($result['custom_field']);
+			
 				$data['customers'][] = array(
 					'customer_id'    			=> $result['customer_id'],
 					'customer_id_hash'			=> $customer_id_hash,
 					'customer_name'     		=> $result['name'],
+					'customer_email'     		=> $result['email'],
+					'customer_city'     		=> (!empty($custom_field[1]))?$custom_field[1]:'регистрация через социальную сеть',
+					'customer_b'     			=> (!empty($custom_field[2]))?$custom_field[2]:'регистрация через социальную сеть',
+					'customer_p'     			=> (!empty($custom_field[3]))?$custom_field[3]:'регистрация через социальную сеть',
+					'customer_s'     			=> (!empty($custom_field[4]))?$custom_field[4]:'регистрация через социальную сеть',
+					'customer_d'     			=> (!empty($custom_field[5]))?$custom_field[5]:'регистрация через социальную сеть',
 					'customer_image'			=> $image,
 					'action'		 			=> $actions 
 				);
@@ -129,7 +144,33 @@ class ControllerAccountCustomers extends Controller {
 			
 			
 		}
-
+		print_r('<table>');
+		$i =1;
+		print_r('<tr>');
+		print_r('<td>#</td>');
+		print_r('<td>ФИО</td>');
+		print_r('<td>Email</td>');
+		print_r('<td>Город</td>');
+		print_r('<td>День рождения</td>');
+		print_r('<td>Название ВУЗа</td>');
+		print_r('<td>Специальность обучения</td>');
+		print_r('<td>Номер диплома специалиста</td>');
+		print_r('</tr>');
+		foreach ($data['customers'] as $value) {
+			print_r('<tr>');
+			print_r('<td>'.$i.'</td>');
+			print_r('<td>'.$value['customer_name'].'</td>');
+			print_r('<td>'.$value['customer_email'].'</td>');
+			print_r('<td>'.$value['customer_city'].'</td>');
+			print_r('<td>'.$value['customer_b'].'</td>');
+			print_r('<td>'.$value['customer_p'].'</td>');
+			print_r('<td>'.$value['customer_s'].'</td>');
+			print_r('<td>'.$value['customer_d'].'</td>');
+			print_r('</tr>');
+			$i++;
+		}
+		print_r('</table>');
+		die();
 		$data['column_left'] = $this->load->controller('common/column_left');
 		$data['column_right'] = $this->load->controller('common/column_right');
 		$data['content_top'] = $this->load->controller('common/content_top');

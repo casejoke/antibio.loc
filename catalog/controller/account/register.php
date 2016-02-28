@@ -101,6 +101,12 @@ class ControllerAccountRegister extends Controller {
 			$data['error_warning'] = '';
 		}
 
+		if (isset($this->error['captcha'])) {
+			$data['error_captcha'] = $this->error['captcha'];
+		} else {
+			$data['error_captcha'] = '';
+		}
+
 		if (isset($this->error['firstname'])) {
 			$data['error_firstname'] = $this->error['firstname'];
 		} else {
@@ -337,18 +343,26 @@ class ControllerAccountRegister extends Controller {
 			$information_info = $this->model_catalog_information->getInformation($this->config->get('config_account_id'));
 
 			if ($information_info) {
-				$data['text_agree'] = sprintf($this->language->get('text_agree'), $this->url->link('information/information/agree', 'information_id=' . $this->config->get('config_account_id'), 'SSL'), $information_info['title'], $information_info['title']);
+				$data['text_agree_new'] = sprintf($this->language->get('text_agree_new'), $information_info['title'], $information_info['title']);
 			} else {
-				$data['text_agree'] = '';
+				$data['text_agree_new'] = '';
 			}
 		} else {
-			$data['text_agree'] = '';
+			$data['text_agree_new'] = '';
 		}
 
 		if (isset($this->request->post['agree'])) {
 			$data['agree'] = $this->request->post['agree'];
 		} else {
 			$data['agree'] = false;
+		}
+
+		if ($this->config->get('config_google_captcha_status')) {
+			$this->document->addScript('https://www.google.com/recaptcha/api.js');
+
+			$data['site_key'] = $this->config->get('config_google_captcha_public');
+		} else {
+			$data['site_key'] = '';
 		}
 
 		$data['column_left'] = $this->load->controller('common/column_left');
@@ -395,7 +409,15 @@ class ControllerAccountRegister extends Controller {
 
 		}
 		
+		if ($this->config->get('config_google_captcha_status')) {
+			$recaptcha = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret=' . urlencode($this->config->get('config_google_captcha_secret')) . '&response=' . $this->request->post['g-recaptcha-response'] . '&remoteip=' . $this->request->server['REMOTE_ADDR']);
 
+			$recaptcha = json_decode($recaptcha, true);
+
+			if (!$recaptcha['success']) {
+				$this->error['captcha'] = $this->language->get('error_captcha');
+			}
+		}
 
 		/*
 		if ((utf8_strlen($this->request->post['telephone']) < 3) || (utf8_strlen($this->request->post['telephone']) > 32)) {

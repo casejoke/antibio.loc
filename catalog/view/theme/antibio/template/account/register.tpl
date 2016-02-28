@@ -1,21 +1,5 @@
 <?php echo $header; ?>
-<!-- Optional header components (ex: slider) -->
-    <div class="pg-opt hidden">
-        <div class="container">
-            <div class="row">
-                <div class="col-xs-6">
-                    <h2>Blog</h2>
-                </div>
-                <div class="col-xs-6">
-                    <ol class="breadcrumb">
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#">Blog</a></li>
-                        <li class="active">Large grid</li>
-                    </ol>
-                </div>
-            </div>
-        </div>
-    </div>
+
   <?php echo $content_top; ?>
   <!-- MAIN CONTENT -->
   <section class="slice bg-white">
@@ -326,38 +310,49 @@
                     <?php } ?>
                   </div>
                 </div>
-              
-          
-          
-          
-
-        
-         
-
-
-              <?php if ($text_agree) { ?>
+            <?php if ($text_agree_new) { ?>
               <div class="form-group">
-                <div class="col-xs-offset-3 col-xs-6 col-sm-4 col-sm-offset-4">
-                  <div class="pull-right"><?php echo $text_agree; ?>
-                    <?php if ($agree) { ?>
-                    <input type="checkbox" name="agree" value="1" checked="checked" />
-                    <?php } else { ?>
-                    <input type="checkbox" name="agree" value="1" />
-                    <?php } ?>
-                    &nbsp;
-                    <input type="submit" value="<?php echo $button_continue; ?>" class="btn btn-block btn-base" />
+                <label class="col-sm-4 control-label"></label>
+                <div class="col-sm-8">
+                  <div class="checkbox"> 
+                    <label>
+                      <?php if ($agree) { ?>
+                      <input type="checkbox" name="agree" value="1" checked="checked" />
+                      <?php } else { ?>
+                      <input type="checkbox" name="agree" value="1" />
+                      <?php } ?>
+                    <?php echo $text_agree_new; ?></label>
+                    
                   </div>
+                  <?php if ($error_warning) { ?>
+                    <div class="alert alert-danger"><i class="fa fa-exclamation-circle"></i> <?php echo $error_warning; ?></div>
+                  <?php } ?>
                 </div>
               </div>
-              <?php } else { ?>
+              <?php if ($site_key) { ?>
+                <div class="form-group">
+                  <div class="col-sm-offset-4 col-sm-8">
+                    <div class="g-recaptcha" data-sitekey="<?php echo $site_key; ?>"></div>
+                    <?php if ($error_captcha) { ?>
+                      <div class="text-danger"><?php echo $error_captcha; ?></div>
+                    <?php } ?>
+                  </div>
+                </div>
+              <?php } ?>
+
               <div class="form-group">
                 <div class="col-xs-offset-2 col-xs-8 col-sm-offset-4 col-sm-8  ">
                     <input type="submit" value="<?php echo $button_continue; ?>" class="btn btn-block btn-base" />
                 </div>
               </div>
-        <?php } ?>
-
-      </form>
+            <?php } else { ?>
+              <div class="form-group">
+                <div class="col-xs-offset-2 col-xs-8 col-sm-offset-4 col-sm-8  ">
+                    <input type="submit" value="<?php echo $button_continue; ?>" class="btn btn-block btn-base" />
+                </div>
+              </div>
+            <?php } ?>
+        </form>
        
       </div>
     </div>
@@ -376,7 +371,25 @@
           </div>
       </div>
   </section>
-
+  <!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Согласие на&nbsp;обработку персональных данных</h4>
+      </div>
+      <div class="modal-body">
+        <p>Подтверждая регистрацию на&nbsp;сайте www.antibiotik.pro, Вы, тем самым, даете свое согласие на&nbsp;обработку персональных данных, указанных выше, в&nbsp;соответствии с&nbsp;Федеральным Законом Российской Федерации &#8470;&nbsp;152-ФЗ от&nbsp;27&nbsp;июля 2006 года &laquo;О&nbsp;персональных данных&raquo;:</p>
+        <p>&quot;Я&nbsp;нижеследующим выражаю свободно, в&nbsp;своей воле и&nbsp;в&nbsp;своем интересе информированное согласие на&nbsp;обработку моих персональных данных, указанных выше, в&nbsp;соответствии с&nbsp;Федеральным Законом Российской Федерации &#8470;&nbsp;152-ФЗ от&nbsp;27&nbsp;июля 2006 года &quot;О&nbsp;персональных данных&quot;.Согласие предоставляется компаниям, владеющим и&nbsp;осуществляющим поддержку сайта www.antibiotik.pro, с&nbsp;правом передачи персональных данных их&nbsp;аффилированным лицам, контрагентам, осуществляющим обработку и&nbsp;хранение данных, включая трансграничную передачу на&nbsp;территории всех стран мира, включая США, в&nbsp;тех пределах, в&nbsp;которых это необходимо для выполнения целей моей регистрации на&nbsp;сайте и&nbsp;дальнейшего предоставления мне информации через любые каналы коммуникации, включая почту, SMS, электронную почту, телефон и&nbsp;иные каналы коммуникации.&quot;</p>
+        <p>По&nbsp;всем вопросам обработки персональных данных, праве отзыва настоящего соглашения можно обращаться по&nbsp;тел.: +7 (495) 543-98-58 и&nbsp;по&nbsp;электронной почте <a href="mailto:contact@antibiotik.pro" target="_blank">contact@antibiotik.pro</a>.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
+      </div>
+    </div>
+  </div>
+</div>
 <!-- /MODULE -->
 <?php echo $column_left; ?>
 <?php echo $column_right; ?>
